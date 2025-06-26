@@ -68,6 +68,22 @@ export default Object.assign(mainObj, {
   stopPackage: (deviceId: string, pkg: string) => {
     return ipcRenderer.invoke('stopPackage', deviceId, pkg)
   },
+
+  getThermalInfo: (deviceId: string) => {
+    return ipcRenderer.invoke('getThermalInfo', deviceId)
+  },
+  getKeyThermalSensors: (deviceId: string) => {
+    return ipcRenderer.invoke('getKeyThermalSensors', deviceId)
+  },
+  getAllThermalZones: (deviceId: string) => {
+    return ipcRenderer.invoke('getAllThermalZones', deviceId)
+  },
+  getThermalServiceInfo: (deviceId: string) => {
+    return ipcRenderer.invoke('getThermalServiceInfo', deviceId)
+  },
+  intelligentSensorClassification: (type: string) => {
+    return ipcRenderer.invoke('intelligentSensorClassification', type)
+  },
   clearPackage: (deviceId: string, pkg: string) => {
     return ipcRenderer.invoke('clearPackage', deviceId, pkg)
   },

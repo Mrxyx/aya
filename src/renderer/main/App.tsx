@@ -5,6 +5,7 @@ import Overview from './components/overview/Overview'
 import Screenshot from './components/screenshot/Screenshot'
 import Process from './components/process/Process'
 import Performance from './components/performance/Performance'
+import Thermal from './components/thermal/Thermal'
 import Webview from './components/webview/Webview'
 import Application from './components/application/Application'
 import File from './components/file/File'
@@ -73,6 +74,9 @@ export default observer(function App() {
             </Panel>
             <Panel panel="performance">
               <Performance />
+            </Panel>
+            <Panel panel="thermal">
+              <Thermal />
             </Panel>
             <Panel panel="webview">
               <Webview />

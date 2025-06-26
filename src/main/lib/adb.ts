@@ -27,6 +27,8 @@ import * as fps from './adb/fps'
 import * as webview from './adb/webview'
 import * as port from './adb/port'
 import { getCpuLoads, getCpus } from './adb/cpu'
+import * as thermal from './adb/thermal'
+import { ipcMain } from 'electron'
 import log from 'share/common/log'
 import {
   IpcDumpWindowHierarchy,
@@ -103,6 +105,7 @@ async function getOverview(deviceId: string) {
     ...(await getIpAndMac(deviceId)),
     ...(await getStorage(deviceId)),
     ...(await getMemory(deviceId)),
+    ...(await getBattery(deviceId)),
     ...(await getScreen(deviceId)),
   }
 }
@@ -417,4 +420,13 @@ export async function init() {
   handleEvent('startWireless', startWireless)
   handleEvent('restartAdbServer', restartAdbServer)
   handleEvent('pairDevice', pairDevice)
+  handleEvent('getThermalInfo', thermal.getThermalInfo)
+  handleEvent('getKeyThermalSensors', thermal.getKeyThermalSensors)
+  handleEvent('getAllThermalZones', thermal.getAllThermalZones)
+  handleEvent('getThermalServiceInfo', thermal.getThermalServiceInfo)
+  
+  // 智能传感器分类IPC处理器
+  ipcMain.handle('intelligentSensorClassification', async (event, type: string) => {
+    return thermal.intelligentSensorClassification(type)
+  })
 }

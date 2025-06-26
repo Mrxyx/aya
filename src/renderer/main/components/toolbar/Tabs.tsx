@@ -13,6 +13,7 @@ export default observer(function Panels() {
       'application',
       'process',
       'performance',
+      'thermal',
       'shell',
       'layout',
       'screenshot',

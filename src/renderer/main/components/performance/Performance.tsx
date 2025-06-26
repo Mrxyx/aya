@@ -59,6 +59,10 @@ export default observer(function Performance() {
 
   const fpsData = useCallback(() => dataRef.current.fps, [])
 
+  const batteryData = useCallback(() => {
+    return Math.round(dataRef.current.batteryTemperature / 10)
+  }, [])
+
   const { device } = store
 
   useEffect(() => {
@@ -166,6 +170,15 @@ export default observer(function Performance() {
           smooth={false}
           height={80}
           color={isDark ? orange6Dark : orange6}
+        />
+        <LunaPerformanceMonitor
+          title={`${t('batteryTemperature')}`}
+          data={batteryData}
+          theme={store.theme}
+          smooth={false}
+          height={80}
+          color={isDark ? '#ff6b6b' : '#ff4757'}
+          unit="°C"
         />
       </div>
     </div>

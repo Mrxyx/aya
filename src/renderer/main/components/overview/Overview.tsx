@@ -118,6 +118,11 @@ export default observer(function Overview() {
           {item(t('ipAddress'), overview.ip, 'browser')}
           {item(t('macAddress'), overview.mac, 'browser')}
         </div>
+        <div className={Style.row}>
+          {overview.batteryLevel !== undefined && item(t('batteryLevel'), `${overview.batteryLevel}%`, 'power')}
+          {overview.batteryTemperature !== undefined && item(t('batteryTemperature'), `${((overview.batteryTemperature as number) / 10).toFixed(1)}°C`, 'power')}
+          {overview.batteryVoltage !== undefined && item(t('batteryVoltage'), `${((overview.batteryVoltage as number) / 1000).toFixed(2)}V`, 'power')}
+        </div>
         <FontAdjustModal
           visible={fontAdjustModalVisible}
           initialScale={overview.fontScale as number}

@@ -69,3 +69,32 @@ export type IpcPairDevice = (
   port: number,
   password: string
 ) => Promise<void>
+
+export interface IThermalZone {
+  id: number
+  type: string
+  temperature: number
+  raw: number
+}
+
+export interface IThermalInfo {
+  zones: IThermalZone[]
+  throttlingStatus: number
+  throttlingDescription: string
+  availableZones: number
+  validZones: number
+}
+
+export type IpcGetThermalInfo = (deviceId: string) => Promise<IThermalInfo>
+export type IpcGetKeyThermalSensors = (deviceId: string) => Promise<{
+  cpu?: number
+  gpu?: number
+  battery?: number
+  skin?: number
+  soc?: number
+}>
+export type IpcGetAllThermalZones = (deviceId: string) => Promise<IThermalZone[]>
+export type IpcGetThermalServiceInfo = (deviceId: string) => Promise<{
+  throttlingStatus: number
+  throttlingDescription: string
+} | null>
